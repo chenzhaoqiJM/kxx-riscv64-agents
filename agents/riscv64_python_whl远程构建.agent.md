@@ -41,6 +41,7 @@ user-invocable: true
 - 远程主机芯片架构：riscv64，芯片型号可能有：Spacemit(R) X60(称为k1)、Spacemit(R) X100(称为k3)
 - k1使用的pypi仓库：https://git.spacemit.com/api/v4/projects/33/packages/pypi，k3使用的pypi仓库：https://git.spacemit.com/api/v4/projects/81/packages/pypi
 - 构建代码 python_auto_build_riscv64 里面的 manual_build 文件夹下有手动构建的一些脚本，如果用户想构建相关包，你需要参考这些脚本，可以对脚本进行修改，但不要修改核心逻辑，构建完成后恢复原有脚本。
+- 构建代码 python_auto_build_riscv64 里面的 experience 文件夹下有一些构建经验和注意事项，供参考。
 
 ## 下载源码包
 
@@ -51,6 +52,8 @@ user-invocable: true
 - 下载最新源码包：`python3 ~/python_auto_build_riscv64/common_py/download_whl_sdist.py lintrunner`
 - 下载指定版本：`python3 ~/python_auto_build_riscv64/common_py/download_whl_sdist.py numpy 1.26.0`
 - 指定目录和文件名：`python3 ~/python_auto_build_riscv64/common_py/download_whl_sdist.py flask --dest ./downloads --filename flask-src.tar.gz`
+
+如果用户明确要求了使用 git 下载源码包，使用 `git clone` 下载到远程特定目录。
 
 下载目录应选择远程临时工作目录，避免污染用户项目目录。
 
