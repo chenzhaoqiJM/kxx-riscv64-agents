@@ -22,12 +22,14 @@
 
 ## 开发目标
 
-目标是重新编译 `libceres-dev`，验证 `eigen-spacemit` 相比系统 `libeigen3-dev` 是否能提升 Ceres 相关计算性能。
+目标是重新编译 `libceres-dev` 以使用 eigen-spacemit，验证 `libceres-dev` 使用 `eigen-spacemit` 后相比使用系统 `libeigen3-dev` 是否能提升 Ceres 相关计算性能，注意只测 libceres-dev 性能即可，我已经提前确认 eigen-spacemit 相比于 libeigen3-dev 有性能提升, eigen的对比性能测试数据可见：/home/bianbu26/eigen_rvv/eigen_custom_test/base_perf/results/compare_rvv_for_eigen.md。
+
+你需要优先考虑测试使用到了Eigen算子的函数或者功能，特别使用到了Eigen的矩阵乘法，还需要测试一些在ai或者机器人领域使用频率较高的函数或者功能
 
 工作应按以下阶段推进：
 
 1. 基线测试
-   - 先测试系统现有 `libceres-dev` + 系统 `libeigen3-dev` 的性能。
+   - 先测试系统现有 `libceres-dev` 的性能，注意无需测试 eigen3 库的性能。
    - 编写一个可复用的 Ceres 性能测试程序，不依赖临时手工命令。
    - 保留完整基线测试报告，包括硬件/系统信息、包版本、编译命令、运行命令、原始输出和结论。
 
@@ -43,13 +45,14 @@
    - 替换后确认头文件、库文件和链接关系确实来自新构建包。
 
 4. 对比测试
-   - 使用同一个可复用测试程序重新测试 `libceres-dev` + `eigen-spacemit` 的性能。
+   - 使用同一个可复用测试程序重新测试新的使用eigen-spacemit的 `libceres-dev` 的性能。
    - 测试条件应尽量与基线一致，包括编译选项、运行次数、CPU 频率/负载状态和输入规模。
    - 保留新测试报告，并与基线报告进行对比。
 
 5. 结论整理
    - 输出最终报告，明确说明是否加速、加速幅度、测试置信度、可能误差来源和后续建议。
    - 报告必须包含可复现实验步骤，方便后续重新运行。
+   - 报告里面除了专业术语使用英文，其它均使用中文。
 
 ## 推荐目录结构
 
